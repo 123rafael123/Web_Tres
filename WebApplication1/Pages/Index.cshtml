@@ -1,10 +1,55 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Inicio";
 }
+<style>
+    body {
+        background-color: #fff;
+        color: #000;
+        font-family: 'Segoe UI', sans-serif;
+    }
+    .main-container {
+        max-width: 700px;
+        margin: 80px auto;
+        text-align: center;
+        padding: 0 20px;
+    }
+    h1 {
+        font-size: 3rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+    }
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+        a:hover {
+            color: gray;
+        }
+    .btn-link {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 10px 20px;
+        border: 1px solid #000;
+        background: none;
+        color: #000;
+        text-decoration: none;
+        font-weight: 500;
+    }
+        .btn-link:hover {
+            background-color: #000;
+            color: #fff;
+        }
+</style>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="main-container">
+    <h1>Bienvenido</h1>
+    <p> Aprende a construir aplicaciones web con <a href="https://learn.microsoft.com/aspnet/core" target="_blank">ASP.NET Core</a>.
+    </p>
+    <a href="https://learn.microsoft.com/aspnet/core" class="btn-link" target="_blank"> Ver documentacion </a>
 </div>
