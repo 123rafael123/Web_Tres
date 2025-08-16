@@ -4,73 +4,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebApplication1</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #fff;
-            color: #000;
-        }
-        header {
-            padding: 15px 30px;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar-brand, .nav-link {
-            color: black;
-            text-decoration: none;
-            margin-right: 20px;
-            font-weight: 500;
-        }
-            .nav-link:hover {
-                text-decoration: underline;
-            }
-        .nav-links {
-            display: flex;
-            gap: 15px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px 20px;
-        }
-        footer {
-            text-align: center;
-            font-size: 0.9rem;
-            color: #444;
-            padding: 15px;
-            margin-top: 60px;
-        }
-        a {
-            color: black;
-        }
-            a:hover {
-                color: gray;
-            }
-    </style>
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <div class="navbar container">
-            <a class="navbar-brand" asp-area="" asp-page="/Index">WebApplication1</a>
-            <div class="nav-links">
-                <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
-                <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
-            </div>
+    <div id="layoutContainer" class="layout">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Perfil</a></li>
+                <li><a href="#">Configuración</a></li>
+            </ul>
+        </aside>
+        <div class="main-content">
+            <header class="header">
+                <div>WebApplication1</div>
+                <button class="menu-toggle" onclick="toggleSidebar()">☰ Menú</button>
+            </header>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </header>
-    <div class="container">
-        <main role="main">
-            @RenderBody()
-        </main>
     </div>
-    <footer>
-        &copy; 2025 - WebApplication1 - <a asp-area="" asp-page="/Privacy">Privacy</a>
-    </footer>
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/js/site.js"></script>
 </body>
 </html>
