@@ -1,51 +1,81 @@
-﻿@page
-@model IndexModel
+﻿@page "{pagina:int?}"
+@model WebApplication1.Pages.IndexModel
 @{
-    ViewData["Title"] = "Inicio";
+    ViewData["Title"] = "Tareas Asignadas";
 }
-<style>
-    body {
-        background-color: #fff;
-        color: #000;
-        font-family: 'Segoe UI', sans-serif;
-    }
-    .containerUno{
-        background-color:red;
-        color:white;
-        font-size:40px;
-        margin:10px;
-        display:flex;
-        
-    }
-    h5{
-        color:black;
-        font-size:15px;
-    }
-    h6{
-        color:black;
-    }
-    .div.titulos{
-        display:flex;
-    }
-</style>
 
-<div class="main-container">
-    <div id="div.titulos">
-        <container class="containerUno"><h5>Nombre tarea</h5>
-            <h6>Primera Tarea</h6>
-        </container>
-        <container class="containerUno">
-            <h5>Fecha Vencimiento</h5>
-            <h6>15/08/2025</h6>
-        </container>
-        <container class="containerUno">
-            <h5>Estado</h5>
-            <h6>En Proceso</h6>
-        </container>
-        <container class="containerUno">
-            <h5>Acciones</h5>
-            <button style="background:green"></button>
-            <button style="background:red"></button>
-        </container>
+<link rel="stylesheet" href="~/css/styl1.css" />
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">📋 Lista de Tareas</h2>
+
+    <div class="mb-3" style="max-width: 200px; margin:auto;">
+        <label for="cantidadPorPagina">Tareas por página:</label>
+        <select id="cantidadPorPagina" name="cantidadPorPagina" onchange="cambiarCantidadPagina(this.value)">
+            <option value="5" @(Model.TareasPorPagina == 5 ? "selected" : "")>5</option>
+            <option value="10" @(Model.TareasPorPagina == 10 ? "selected" : "")>10</option>
+            <option value="20" @(Model.TareasPorPagina == 20 ? "selected" : "")>20</option>
+        </select>
     </div>
+
+    @if (Model.Tareas != null && Model.Tareas.Any())
+    {
+        <div class="contenedor-tareas">
+            <div class="tarea-header">
+                <div class="tarea-col">Nombre</div>
+                <div class="tarea-col">Fecha Vencimiento</div>
+                <div class="tarea-col">Estado</div>
+                <div class="tarea-col acciones">Acciones</div>
+            </div>
+
+            @foreach (var tarea in Model.Tareas)
+            {
+                <div class="tarea-row">
+                    <div class="tarea-col">@tarea.nombreTarea</div>
+                    <div class="tarea-col">@tarea.fechaVencimiento</div>
+                    <div class="tarea-col">
+                        <span class="badge @(tarea.estado switch {
+                            "Pendiente" => "badge-pendiente",
+                            "En curso" => "badge-encurso",
+                            "Finalizado" => "badge-finalizado",
+                            "Cancelado" => "badge-cancelado",
+                            _ => "badge-otro"
+                        })">
+                            @tarea.estado
+                        </span>
+                    </div>
+                    <div class="tarea-col acciones">
+                        <button class="btn btn-sm btn-outline-success" title="Editar">✏️</button>
+                        <button class="btn btn-sm btn-outline-danger" title="Eliminar">🗑️</button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center mt-4" role="alert">
+            No hay tareas asignadas.
+        </div>
+    }
+
+    <nav aria-label="Paginacion de tareas" class="mt-4">
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= Model.TotalPaginas; i++)
+            {
+                <li class="page-item @(i == Model.PaginaActual ? "active" : "")">
+                    <a class="page-link" asp-page="./Index" asp-route-pagina="@i" asp-route-cantidad="@Model.TareasPorPagina">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
 </div>
+
+<script>
+    function cambiarCantidadPagina(cantidad) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('cantidad', cantidad);
+        url.searchParams.set('pagina', 1); // resetear a página 1
+        window.location.href = url.toString();
+    }
+</script>
