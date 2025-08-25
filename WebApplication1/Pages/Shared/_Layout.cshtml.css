@@ -1,48 +1,199 @@
-﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿body {
+    background-color: #0d1117 !important;
+    color: #58a6ff !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
 }
 
-a {
-  color: #0077cc;
+a, a:hover, a:visited {
+    color: #58a6ff !important;
+    text-decoration: none;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.layout {
+    display: flex;
+    height: 100vh;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.sidebar {
+    width: 200px;
+    background: #161b22;
+    color: #58a6ff;
+    height: 100vh;
+    padding-top: 20px;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+        .sidebar ul li {
+            padding: 15px 20px;
+        }
+
+            .sidebar ul li a {
+                color: #58a6ff;
+                font-weight: 600;
+                display: block;
+            }
+
+                .sidebar ul li a:hover {
+                    background: #2381ff;
+                    color: white;
+                    border-radius: 5px;
+                }
+
+.sidebar-hidden .sidebar {
+    width: 0;
+    overflow: hidden;
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.main-content {
+    flex: 1;
+    background-color: #22272e;
+    padding: 20px;
+    overflow-y: auto;
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0a1f44;
+    padding: 15px 20px;
+    color: #58a6ff;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #58a6ff;
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #58a6ff;
+}
+
+button, select, input[type="text"], input[type="date"] {
+    background-color: #0a1f44;
+    color: #58a6ff;
+    border: 1px solid #2381ff;
+    border-radius: 4px;
+    padding: 8px 12px;
+    transition: background-color 0.3s;
+}
+
+    button:hover, select:hover, input[type="text"]:hover, input[type="date"]:hover {
+        background-color: #2381ff;
+        color: white;
+        border-color: #58a6ff;
+        cursor: pointer;
+    }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #161b22;
+    color: #58a6ff;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #2381ff;
+}
+
+thead {
+    background-color: #0a1f44;
+    color: white;
+}
+
+.badge {
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: white;
+}
+
+.badge-pendiente {
+    background-color: #1e40af;
+}
+
+.badge-encurso {
+    background-color: #2563eb;
+}
+
+.badge-finalizado {
+    background-color: #4f46e5;
+}
+
+.badge-cancelado {
+    background-color: #4338ca;
+}
+
+.pagination {
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 8px;
+}
+
+.page-link {
+    background-color: #0a1f44;
+    color: #58a6ff;
+    border: 1px solid #2381ff;
+    border-radius: 5px;
+    padding: 6px 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .page-link:hover {
+        background-color: #2381ff;
+        color: white;
+    }
+
+.page-item.active .page-link {
+    background-color: #58a6ff;
+    color: #0d1117;
+    border-color: #58a6ff;
+}
+
+#formularioTarea {
+    background-color: #161b22;
+    border: 1px solid #2381ff;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.alert {
+    background-color: #0a1f44;
+    color: #58a6ff;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #22272e;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #2381ff;
+    border-radius: 10px;
+}
+
+input:focus, select:focus, button:focus {
+    outline: none;
+    box-shadow: 0 0 8px #58a6ff;
 }
